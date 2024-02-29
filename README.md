@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME: BALA MURUGAN </H3>
+<H3>ENTER YOUR REGISTER NO:212222230017</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>DATE29.4.24</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,69 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+#IMPORT THE REQUIRED LIBRARIES
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 
+#READ THE DATASET
+df=pd.read_csv("/content/Churn_Modelling.csv", index_col="RowNumber")
+df
+
+#REMOVE THE UNWANTED COLUMNS USING DROP OPERATION
+df.drop(['CustomerId'],axis=1,inplace=True)
+df.drop(['Surname'],axis=1,inplace=True)
+df.drop('Age',axis=1,inplace=True)
+df.drop('Geography',axis=1,inplace=True)
+df.drop('Gender',axis=1,inplace=True)
+df
+
+#CHECK FOR THE NULL VALUES
+df.isnull().sum()
+
+#CHECK FOR DUPLICATED VALUES
+df.duplicated()
+
+#DESCRIBE THE DATASET
+df.describe()
+
+#PREPROCESSING THE DATASET
+scaler=StandardScaler()
+df1=pd.DataFrame(scaler.fit_transform(df))
+df1
+
+#Allocating X and Y attributes
+x=df1.iloc[:,:-1].values
+x
+y=df1.iloc[:,-1].values
+y
+
+#SPLIT THE DATASET INTO TRAINING AND TESTING DATA
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
+print(x_train)
+print(len(x_train))
+print(x_test)
+print(len(x_test))
+```
 
 ## OUTPUT:
 SHOW YOUR OUTPUT HERE
+### DATASET
+![image](https://github.com/Bala1511/Ex-1-NN/assets/118680410/02e175aa-473e-4549-a6b9-d5a26a481e7a)
+
+### AFTER DROP OPERATION
+![image](https://github.com/Bala1511/Ex-1-NN/assets/118680410/19eaf5f5-30df-4809-a341-9856d278ed3f)
+### CHECK NULL VALUES
+![image](https://github.com/Bala1511/Ex-1-NN/assets/118680410/dd0be44c-ca22-49f8-91ad-f29c3d92263c)
+### DESCRIBE DATA
+![image](https://github.com/Bala1511/Ex-1-NN/assets/118680410/dde46432-db17-40c5-9abe-ef982d014c81)
+
+
+![image](https://github.com/Bala1511/Ex-1-NN/assets/118680410/328b3c34-b2c5-4d06-974f-a8b177edc969)
+
+
+![image](https://github.com/Bala1511/Ex-1-NN/assets/118680410/96b56ecf-2a38-4547-a2bc-e5a3dc5efa7b)
 
 
 ## RESULT:
